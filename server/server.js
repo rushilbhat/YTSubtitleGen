@@ -60,8 +60,8 @@ async function transcribe() {
     // console.log("transcribe");
     let audio = "./temp/output.wav"    
     // let model = "../models/ggml-medium-q5_0.bin";
-    let model = "../../whisper.cpp/models/ggml-small-q5_0.bin";
-    transcriptionProcess = spawn('../../whisper.cpp/main', ['-m', model, audio]);
+    let model = "../whisper.cpp/models/ggml-small-q5_0.bin";
+    transcriptionProcess = spawn('../whisper.cpp/main', ['-m', model, audio]);
 
     let errorMessage;
     transcriptionProcess.stderr.on('data', (data) => {
@@ -103,6 +103,8 @@ async function clearTemp() {
     const files = await fs.readdir(tempPath);
 
     for (const file of files) {
+        if (file === '.gitkeep') continue;
+
         const filePath = path.join(tempPath, file);
         await fs.unlink(filePath);
         console.log(`Deleted file ${filePath}`);
