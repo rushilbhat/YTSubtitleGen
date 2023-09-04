@@ -60,7 +60,7 @@ async function transcribe() {
     // console.log("transcribe");
     let audio = "./temp/output.wav"    
     // let model = "../models/ggml-medium-q5_0.bin";
-    let model = "../whisper.cpp/models/ggml-small-q5_0.bin";
+    let model = "../whisper.cpp/models/ggml-small.bin";
     transcriptionProcess = spawn('../whisper.cpp/main', ['-m', model, audio]);
 
     let errorMessage;
