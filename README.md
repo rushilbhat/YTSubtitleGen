@@ -39,7 +39,7 @@ This Chrome extension performs real-time transcription of YouTube videos using w
    - Click on "Load unpacked" and select the `extension` directory from this repository.
   
 4. **Run the Server**:
-   From the `root` directory, run:
+   From the `server` directory, run:
    ```
    npm start
    ```
