@@ -15,13 +15,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
-const eventEmitter = new events.EventEmitter(); // 2. Create an EventEmitter instance
-
-// app.get('/', (req, res) => {
-//     res.send('Server is running');
-// });
-
-// let timestamps = [];
+const eventEmitter = new events.EventEmitter();
 
 function parseTimestamp(timestamp) {
     let [hours, minutes, seconds] = timestamp.split(':');
@@ -57,9 +51,7 @@ function generateTimestamps(output) {
 let transcriptionProcess = null;
 
 async function transcribe() {
-    // console.log("transcribe");
     let audio = "./temp/output.wav"    
-    // let model = "../models/ggml-medium-q5_0.bin";
     let model = "../whisper.cpp/models/ggml-small.bin";
     transcriptionProcess = spawn('../whisper.cpp/main', ['-m', model, audio]);
 
@@ -127,10 +119,8 @@ app.get('/updates', (req, res) => {
     res.flushHeaders();
 
     client = res;
-    // console.log("active", client);
 
     req.on('close', () => {
-        // console.log("close", client);
         client = null
     });
 });
